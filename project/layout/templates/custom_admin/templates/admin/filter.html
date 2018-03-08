@@ -1,0 +1,26 @@
+{% load i18n %}
+
+
+    <div class="{{filter_container_class}}">
+        <div class="white-box">
+            <div class="row">
+                <div class=" col-xs-12">
+                    <h3 class="box-title m-b-0">{% blocktrans with filter_title=title %}  {{ filter_title }} {% endblocktrans %}</h3>
+                    <p class="text-muted font-13 m-b-30"> Select  <code>{{ title }}</code> to filter data </p>
+
+
+                    {% for choice in  choices %}
+                    <a href="{{ choice.query_string|iriencode }}" title="{{ choice.display }}"
+                       class="   checkbox-circle checkbox-inverse  {% if choice.selected %} text-success {% endif %}">
+                        <i class="fa fa-check-circle"></i>
+                        <label > {{ choice.display }} </label>
+                    </a>
+                    {% endfor %}
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+

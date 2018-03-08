@@ -1,0 +1,117 @@
+{% load i18n static %}
+<!-- Top Navigation -->
+<nav class=" navbar navbar-default navbar-static-top m-b-0"  >
+    <div class="navbar-header">
+        <!-- .Logo -->
+        <div class="top-left-part"><a class="logo" href="/">
+            <!--This is logo icon-->
+
+
+            <img src="{% static 'admin/assets/website/images/whiteLogoPart.png' %}" alt="home" class="light-logo" style="width:55px;height:48px;" /></a></div>
+        <ul class="nav navbar-top-links navbar-left hidden-xs">
+            <li><a href="javascript:void(0)" class="logotext">
+                <!--This is logo text-->
+                <img src="{% static 'admin/assets/website/images/whiteLogo.png' %}" style="max-width:100px;" alt="home" class="light-logo" alt="home" /></a></li>
+        </ul>
+        <!-- /.Logo -->
+        <!-- top right panel -->
+        <ul class="nav navbar-top-links navbar-right pull-right">
+
+
+
+
+
+
+
+
+
+
+            {% if notificationList.carNotificationList  %}
+
+            <li class="dropdown"> <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#"><i class="icon-user"></i>
+                <div class="@if(count($notificationList) ) notify @endif"><span class="heartbit"></span><span class="point"></span></div>
+            </a>
+                <ul class="dropdown-menu mailbox animated bounceInDown">
+                    <li>
+                        <div class="drop-title">You have {{ notificationList.carNotificationList | length }} new Notification</div>
+                    </li>
+                    <li>
+                        <div class="message-center">
+
+                            {% for notification in notificationList.carNotificationList %}
+                            <a href="{{ notification.link }}">
+                                <div class="user-img"> <img src="{{ notification.img }}" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
+                                <div class="mail-contnet">
+                                    <h5> {{ notification.title }} </h5>
+                                    <span class="mail-desc">{{ notification.description }} </span> <span class="time">{{ notification.date }}</span> </div>
+                            </a>
+                            {% endfor %}
+
+                        </div>
+                    </li>
+                    <li> <a class="text-center" href="/admin/service_company_order?notification=0"> <strong>See all notification</strong> <i class="fa fa-angle-right"></i> </a></li>
+                </ul>
+                <!-- /.dropdown-messages -->
+            </li>
+            {% endif %}
+
+
+
+
+
+
+
+
+
+
+            <!-- .dropdown -->
+            <li class="dropdown">
+                <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#"><i class="fa fa-language"></i>
+                    {% trans 'language'  %}
+                </a>
+                <ul class="dropdown-menu dropdown-tasks animated slideInUp">
+
+                    {% for lang,langName in languageList.items %}
+
+                    <li>
+                        <a href="?locale={{ lang }}">{{  langName }} </a>
+                    </li>
+                    {% endfor %}
+
+                </ul>
+                <!-- /.dropdown-tasks -->
+            </li>
+            <!-- /.dropdown -->
+            <!-- .dropdown -->
+            <li class="dropdown"> <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img src="{% static 'admin/assets/admin/img/user_icon.jpg' %}" alt="user-img" width="36" class="img-circle"><b class="hidden-xs"> {{ username}}</b> </a>
+                <ul class="dropdown-menu dropdown-user animated flipInY">
+
+                    <li role="separator" class="divider"></li>
+                    <li><a href=" { { route('admin.logout') }}"><i class="fa fa-power-off"></i> {% trans 'logout' %}</a></li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
+            <!-- .right toggle -->
+            <li class="right-side-toggle"><a class="waves-effect waves-light" href="javascript:void(0)"> <i class="ti-arrow-right"></i></a></li>
+            <!-- /.right toggle -->
+        </ul>
+        <!-- top right panel -->
+    </div>
+</nav>
+<!-- End Top Navigation -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
