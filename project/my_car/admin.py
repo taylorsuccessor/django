@@ -110,7 +110,10 @@ class ActionTemplateForm(forms.Form):
         widget=forms.HiddenInput({'class': 'select-across'}),
     )
 
+from django.template.loader import render_to_string
+def renderCustomFieldsetList(request,object,form):
 
+    return {'Notes':render_to_string('custom_field.html',{'field_name':'age','object':object,'form':form})}
 
 class MyCarAdmin(admin.ModelAdmin):
 
@@ -118,8 +121,6 @@ class MyCarAdmin(admin.ModelAdmin):
     list_display = ('__str__','name','status',  'age','module_link')
     list_display_links = ()
     list_filter = ('status','shop',NumberOfRowInPageFilter,)
-    filter_container_class='col-xs-4'
-    date_hierarchy_container_class='col-xs-12'
     list_select_related = False
     list_per_page = 20
 
@@ -152,6 +153,15 @@ class MyCarAdmin(admin.ModelAdmin):
 
     # checks_class = ModelAdminChecks
     form = MyCarForm
+    # fieldsets = (
+    #         (None, {
+    #             'fields': list(MyCarForm.fields)
+    #         }),
+    #         ('Notes', {
+    #             'fields': ['age']
+    #         }),
+    # )
+
 
 
 
@@ -203,8 +213,9 @@ class MyCarAdmin(admin.ModelAdmin):
           # request.GET.pop('per_page')
 
         extra_context = extra_context or {}
-        extra_context['filter_container_class'] = self.filter_container_class
-        extra_context['date_hierarchy_container_class']=self.date_hierarchy_container_class
+        extra_context['filter_container_class'] = 'col-xs-4'
+        extra_context['date_hierarchy_container_class']='col-xs-12'
+
 
 
         extra_context['title']='title'
@@ -224,14 +235,21 @@ class MyCarAdmin(admin.ModelAdmin):
 
     def add_view(self, request, form_url='', extra_context=None):
         extra_context = extra_context or {}
-        extra_context['my_extra_content'] = ''
+        extra_context['customFieldsetList'] = renderCustomFieldsetList(request,object,self.form)
         return super(MyCarAdmin, self).add_view(request, form_url,
                                                   extra_context=extra_context)
 
     def change_view(self, request, form_url='', extra_context=None):
 
         extra_context = extra_context or {}
-        extra_context['my_extra_content'] = 'my_car/admin.py >> this text exist'
+
+        if request.method=='POST':
+            myForm=self.form(request.POST)
+
+
+        object=MyCar.objects.get(pk=int(form_url))
+        extra_context['customFieldsetList'] = renderCustomFieldsetList(request,object,myForm)
+
 
         return super(MyCarAdmin, self).change_view(request, form_url,
                                                   extra_context=extra_context)

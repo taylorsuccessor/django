@@ -77,6 +77,7 @@ TEMPLATES = [
             os.path.join(os.path.dirname(os.path.dirname(__file__)), "layout", "templates", "custom_admin",
                          "forms","templates"),
 
+
             # os.path.join(os.path.dirname(os.path.dirname(__file__)),"layout","templates","admin","templates"),
         ],
         'APP_DIRS': True,

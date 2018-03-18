@@ -35,15 +35,19 @@
 
 
 
+{%  load helper_filter %}
 
+{% if  fieldset.name and customFieldsetList != None  and  fieldset.name in customFieldsetList %}
 
-
-<fieldset class="module aligned {{ fieldset.classes }}">
+{{ customFieldsetList|get_dict_value:fieldset.name}}
+{% else %}
+<div class="module aligned {{ fieldset.classes }}">
     {% if fieldset.name %}<h2>{{ fieldset.name }}</h2>{% endif %}
     {% if fieldset.description %}
         <div class="description">{{ fieldset.description|safe }}</div>
     {% endif %}
     {% for line in fieldset %}
+
         <div class=" row form-row{% if line.fields|length_is:'1' and line.errors %} errors{% endif %}{% if not line.has_visible_field %} hidden{% endif %}{% for field in line %}{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% endfor %}">
             {% if line.fields|length_is:'1' %}{{ line.errors }}{% endif %}
             {% for field in line %}
@@ -52,10 +56,15 @@
 
       <div class="form-group  has-error  col-xs-6">
 
+           <div class="col-sm-4">
                         {{ field.label_tag }}
+           </div>
                                             <!--<class' => 'col-sm-4 control-label']) !!}-->
                                             <div class="col-sm-8">
                             {{ field.field }}
+                     {% if field.field.help_text %}
+                        <div class="help">{{ field.field.help_text|safe }}</div>
+                    {% endif %}
                                                  <p class="help-block">{{ field.errors }}</p>
                                             </div>
                                         </div>
@@ -64,6 +73,11 @@
 
             {% endfor %}
         </div>
+
+
     {% endfor %}
 
-</fieldset>
+</div>
+
+
+{% endif %}

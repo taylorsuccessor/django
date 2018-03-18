@@ -1,0 +1,23 @@
+{% for name, value in widget.attrs.items %}
+
+
+{% if value is not False %}
+
+
+
+
+{{ name }}{% if value is not True %}=" {{ value|stringformat:'s' }} {% if name == 'class' %} form-control {% endif %}}"
+{% endif %}
+
+
+
+{% endif %}
+
+
+
+{% endfor %}
+
+
+{% if not 'class'  in widget.attrs.items %}
+class="  form-control"
+{% endif %}
