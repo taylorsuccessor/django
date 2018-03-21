@@ -41,7 +41,8 @@ INSTALLED_APPS = [
 
 # out packages
 INSTALLED_APPS +=[
-    'rest_framework'
+    'rest_framework',
+    'django_filters'
 ]
 
 
@@ -157,3 +158,10 @@ LOCALE_PATHS = (
     os.path.join(PROJECT_PATH, "locale"), )
 
 # ________________________________END__translate
+
+
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.CursorPagination',
+#     'PAGE_SIZE': 100
+# }

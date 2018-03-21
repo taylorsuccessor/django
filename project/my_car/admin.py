@@ -243,12 +243,13 @@ class MyCarAdmin(admin.ModelAdmin):
 
         extra_context = extra_context or {}
 
+        customFieldForm=self.form()
         if request.method=='POST':
-            myForm=self.form(request.POST)
+            customFieldForm=self.form(request.POST)
 
 
         object=MyCar.objects.get(pk=int(form_url))
-        extra_context['customFieldsetList'] = renderCustomFieldsetList(request,object,myForm)
+        extra_context['customFieldsetList'] = renderCustomFieldsetList(request,object,customFieldForm)
 
 
         return super(MyCarAdmin, self).change_view(request, form_url,
