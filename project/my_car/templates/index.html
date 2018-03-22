@@ -1,0 +1,46 @@
+{% extends "admin/base_site.html" %}
+{% load i18n  static  %}
+{% load  client_pagination %}
+
+
+
+
+{% block title %} {% trans 'title' %} {% endblock %}
+{% block bannerTitle %}{% trans 'bannerTitle' %}{% endblock %}
+{% block bannerDescription %}{% trans 'bannerDescription' %}{% endblock %}
+{% block modelTableHead %}{% trans 'modelTableHead' %}{% endblock %}
+{% block modelTableDescription %}{% trans 'modelTableDescription' %}{% endblock %}
+
+
+
+
+
+
+{% block content %}
+
+{{total}}
+<table  id="result_list" class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>
+
+    <thead>
+    <tr>
+        <th scope="col" >{% trans 'name' %}</th>
+        <th scope="col" >{% trans 'status' %}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for result in results %}
+    <tr class=" row1">
+        <td><a href="{{result.id}}">{{result.name}}</a></td>
+        <td>{{result.status_text}}</td>
+
+    </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+
+
+{% client_pagination paginator page %}
+
+
+{% endblock %}

@@ -43,8 +43,15 @@ class MyCar(models.Model):
     edited_at = models.DateTimeField(verbose_name=_("Edited At"), null=True, blank=True)
     deleted_at = models.DateField( null=True, blank=True)
     description = models.TextField(verbose_name=_("Description"))
+
+    def status_text(self):
+        return dict(self.STATUS_LIST).get(self.status,'')
+
     def __str__(self):
         return self.name + '( '+str(self.age)+' )'
+
+
+        # return 'this method in model and used in serializer'
 
 
 

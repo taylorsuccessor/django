@@ -19,6 +19,12 @@ class StandardPagination(PageNumberPagination):
     max_page_size = 1000
     page_query_param='page'
 
+
+
+from .filter import CarFilter
+
+
+
 class CarViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
@@ -32,10 +38,9 @@ class CarViewSet(viewsets.ModelViewSet):
 
 
     def get_queryset(self):
-        query_set = self.queryset
 
-        if self.request.GET.get('name',False):
-              query_set = query_set.filter(name=self.request.GET.get('name'))
+        query_set = CarFilter(self.request.GET, self.queryset).qs
+
 
         sort='' if self.request.GET.get('sort',False) !='desc' else '-'
         order_by=self.request.GET.get('order_by') if self.request.GET.get('order_by',False) else 'id'
@@ -48,7 +53,7 @@ class CarViewSet(viewsets.ModelViewSet):
 
 
     def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
+        queryset =  self.get_queryset()
 
         page = self.paginate_queryset(queryset)
         if page is not None:

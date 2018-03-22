@@ -1,0 +1,98 @@
+{% load client_pagination %}
+{% load i18n %}
+
+
+
+    {% if True %}
+<br>
+<div class="row" style="clear:both">
+
+
+
+<div class="col-xs-3">
+<form method="get">
+
+    <div class="col-xs-4">
+        <div class="form-group">
+                    <label class="col-sm-7 " style="padding:0;" for="p">Page : </label>
+<div class="col-xs-5"  style="padding:0;" >{{ paginationForm.p }}</div>
+        </div>
+
+        </div>
+    <div class="col-xs-6">
+        <div class="form-group">
+                    <label class="col-sm-9 control-label"  style="padding:0;"  for="per_page">Records in page : </label>
+            <div class="col-xs-3"  style="padding:0;" >{{ paginationForm.per_page }}</div>
+        </div>
+    </div>
+
+{% for pair in cl.params.items %}
+    {% if pair.0 != 'p' and pair.0 != 'per_page' %}
+    <input type="hidden" name="{{ pair.0 }}" value="{{ pair.1 }}"/>
+    {% endif %}
+{% endfor %}
+
+    <div class="col-xs-2"  style="padding:0;" >
+<button type="submit" class="btn btn-inverse waves-effect waves-light  input-sm">show</button>
+    </div>
+</form>
+</div>
+
+
+
+
+    <div class="col-xs-12 col-sm-2 ">
+
+    {{ cl.result_count }} {% if cl.result_count == 1 %}{{ cl.opts.verbose_name }}{% else %}{{ cl.opts.verbose_name_plural }}{% endif %}
+    {% if show_all_url %}&nbsp;&nbsp;<a href="{{ show_all_url }}" class="showall">{% trans 'Show all' %}</a>{% endif %}
+
+
+      </div>
+
+
+    <div class="col-xs-12 col-sm-7">
+
+
+
+
+        <ul class="pagination">
+
+            <!--<li class="disabled"><span>«</span></li>-->
+
+
+
+    {% for i in page_range %}
+    {% client_paginator_number page i %}
+    {% endfor %}
+
+            <!--<li><a href="http://jomlahsystem.com/admin/order?page=2" rel="next">»</a></li>-->
+        </ul>
+
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% else %}
+<div class="noResultDiv" >{% trans 'noResult' %}</div>
+
+    {% endif %}
+
