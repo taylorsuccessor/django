@@ -27,7 +27,7 @@ class ClassNameField(serializers.Field):
 
 
 
-class CarSerializer(serializers.ModelSerializer):
+class Serializer(serializers.ModelSerializer):
     custom_field = serializers.SerializerMethodField('custom_field_method')
     name = serializers.SerializerMethodField('name_method')
 

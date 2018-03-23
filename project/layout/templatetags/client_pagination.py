@@ -19,18 +19,27 @@ register = template.Library()
 DOT='.'
 
 
-@register.simple_tag
-def client_paginator_number(page, i):
+import urllib
+
+def dictToUrl(dict,exceptParam):
+    dict._mutable=True
+    # if dict[exceptParam]:
+    #   del dict[exceptParam]
+    return urllib.urlencode(dict)
+
+
+@register.simple_tag( takes_context=True)
+def client_paginator_number(context,page, i):
     """
     Generates an individual page index link in a paginated list.
     """
     if i == DOT:
         return format_html('<li ><span>...</span></li> ')
-    elif i == page:
+    elif i == page-1:
         return format_html('<li class="active"><span>{}</span></li> ', i + 1)
     else:
         return format_html(' <li><a href="{}" {}>{}</a></li>',
-                           '?page='+str(i),
+                           '?'+dictToUrl(context.request.GET,'p')+'&p='+str(i+1),
                            mark_safe(' class="end"' if i == 50 - 1 else ''),
                            i + 1)
 
@@ -61,17 +70,15 @@ def client_pagination(context, paginator,page):
             if page_num > (ON_EACH_SIDE + ON_ENDS):
                 page_range.extend(range(0, ON_ENDS))
                 page_range.append(DOT)
-                page_range.extend(range(page_num - ON_EACH_SIDE, page_num + 1))
+                page_range.extend(range(page_num - ON_EACH_SIDE, page_num  ))
             else:
-                page_range.extend(range(0, page_num + 1))
+                page_range.extend(range(0, page_num  ))
             if page_num < (paginator.num_pages - ON_EACH_SIDE - ON_ENDS - 1):
                 page_range.extend(range(page_num + 1, page_num + ON_EACH_SIDE + 1))
                 page_range.append(DOT)
                 page_range.extend(range(paginator.num_pages - ON_ENDS, paginator.num_pages))
             else:
                 page_range.extend(range(page_num + 1, paginator.num_pages))
-
-    need_show_all_link = True
 
 
 
@@ -85,6 +92,7 @@ def client_pagination(context, paginator,page):
         'show_all_url': True,
         'page_range': page_range,
         'paginationForm':paginationForm,
+        'request':context['request'],
        
         'page':page
     }

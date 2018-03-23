@@ -1,47 +1,46 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.forms.models import modelformset_factory
-from .admin import MyCarForm
-from .models import MyCar
+from .models import MyCar as Model
 
-from django.shortcuts import render
-
-from admin import MyCarAdmin
+from django.shortcuts import render,redirect
 
 
-from django.contrib.admin import helpers, widgets
-# Create your views here.
-
-from django.core.paginator import Paginator
-
-
-import django_filters
-
-class MyCarFilter(django_filters.FilterSet):
-    class Meta:
-        model = MyCar
-        fields = ['name', 'price', 'status']
-
+from .filter import getDataByFilter
+from .form import ModelForm
 
 
 def myCarView(request):
 
-    resultsFilter=MyCarFilter(request.GET,MyCar.objects.all())
-
-    per_page = int(request.GET.get('per_page',25) )
-    paginator = Paginator(resultsFilter.qs, per_page) # Show 25 contacts per page
-
-    page = int(request.GET.get('p',1) )
-    contacts = paginator.page(page)
-
-
-
-
-    context={
-        'paginator':paginator,
-        'results':contacts,
-        'total': paginator.count,
-        'page':page
-
-    }
+    context=getDataByFilter(request.GET)
+    context.update( {'request':request})
     return render(request, 'index.html', context)
+
+
+def edit(request):
+    id=request.GET.get('id',False)
+
+
+    if id and request.method!='POST':
+        model=Model.objects.get(pk=id)
+        modelForm=ModelForm(instance=model)
+
+    elif request.method=='POST':
+        if id:
+            model=Model.objects.get(pk=id)
+            modelForm = ModelForm(request.POST, instance=model)
+        else:
+            modelForm=ModelForm(request.POST,request.FILES)
+
+        if modelForm.is_valid():
+                modelForm.save()
+                return redirect('/car/index/')
+    else:
+        modelForm = ModelForm()
+
+
+    return render(request,'edit.html',locals())
+
+
+def delete(request):
+    Model.objects.get(pk=request.GET.get('id')).delete()
+    return redirect('/car/index/')

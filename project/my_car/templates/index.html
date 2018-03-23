@@ -18,7 +18,54 @@
 
 {% block content %}
 
-{{total}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group">
+
+
+
+            <a href="#" class="addlink">
+                <button id="demo-btn-addrow" class=" btn-outline btn-primary btn-sm"><i class="icon wb-plus" aria-hidden="true"></i>
+
+
+                    Add New
+                </button>
+            </a>
+
+
+            <small>New row will be added in last page.</small> </div>
+    </div>
+
+    <div class="col-sm-6 text-right m-b-20">
+        <div class="form-group">
+            <form id="changelist-search" method="get">
+                <input  name="name__iexact" id="demo-input-search2" type="text" placeholder="Search" class="form-control" value="{{ request.GET.name__iexact }}"  autocomplete="off" autofocus>
+                {% for key, value in request.GET.items %}
+                {% if key != 'name__iexact' %}<input type="hidden" name="{{ key }}" value="{{ value }}"/>{% endif %}
+                {% endfor %}
+            </form>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
 <table  id="result_list" class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>
 
     <thead>

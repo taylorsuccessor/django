@@ -1,0 +1,87 @@
+{% extends "admin/base_site.html" %}
+{% load i18n  static  %}
+{% load  client_pagination %}
+
+
+
+
+{% block title %} {% trans 'title' %} {% endblock %}
+{% block bannerTitle %}{% trans 'bannerTitle' %}{% endblock %}
+{% block bannerDescription %}{% trans 'bannerDescription' %}{% endblock %}
+{% block modelTableHead %}{% trans 'modelTableHead' %}{% endblock %}
+{% block modelTableDescription %}{% trans 'modelTableDescription' %}{% endblock %}
+
+
+
+
+
+
+{% block content %}
+
+
+
+
+<form action="" method="post"  enctype="multipart/form-data">
+    {% csrf_token %}
+
+
+    {% for field in modelForm %}
+
+
+
+    <div class="form-group  {% if field.errors %} has-error {% endif %}  col-xs-6">
+
+        <div class="col-sm-4">
+            <label class="required" for="{{ field.id_for_label }}"> {{ field.label_tag }}</label>
+        </div>
+        <div class="col-sm-8">
+            {{ field }}
+            {{ field.errors }}
+            <p class="help-block"></p>
+        </div>
+    </div>
+
+    {% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="row submit-row clearfix">
+        <input type="submit" value="{% trans 'Save' %}" class="default btn btn-inverse" name="_save" />
+
+        {% if id %}
+        <a href="/car/delete/?id={{id}}" class="deletelink btn btn-danger btn-outline  pull-right">{% trans "Delete" %}</a>
+        {% endif %}
+
+
+    </div>
+
+
+
+
+
+
+</form>
+
+
+
+
+
+
+
+{% endblock %}

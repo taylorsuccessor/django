@@ -48,7 +48,8 @@ INSTALLED_APPS +=[
 
 # common app
 INSTALLED_APPS +=[
-    'layout'
+    'layout',
+    'helper',
 ]
 
 # my apps
