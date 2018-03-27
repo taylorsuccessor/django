@@ -64,8 +64,8 @@
     <div class="row submit-row clearfix">
         <input type="submit" value="{% trans 'Save' %}" class="default btn btn-inverse" name="_save" />
 
-        {% if id %}
-        <a href="/car/delete/?id={{id}}" class="deletelink btn btn-danger btn-outline  pull-right">{% trans "Delete" %}</a>
+        {% if pk %}
+        <a href="/car/delete/{{pk}}" class="deletelink btn btn-danger btn-outline  pull-right">{% trans "Delete" %}</a>
         {% endif %}
 
 

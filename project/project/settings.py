@@ -50,6 +50,7 @@ INSTALLED_APPS +=[
 INSTALLED_APPS +=[
     'layout',
     'helper',
+    'user',
 ]
 
 # my apps
@@ -159,6 +160,13 @@ LOCALE_PATHS = (
     os.path.join(PROJECT_PATH, "locale"), )
 
 # ________________________________END__translate
+
+
+#___________________________________user
+AUTH_USER_MODEL = 'user.MyUser'
+#__________________________________END_user
+
+
 
 
 

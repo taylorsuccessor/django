@@ -40,10 +40,12 @@ def getDataByFilter(requestData):
     paginator = Paginator(query_set, per_page) # Show 25 contacts per page
 
     page = int(requestData.get('p',1) )
-    import math
-    page= page if math.ceil(paginator.count / per_page) > page else 1
 
-    contacts = paginator.page(page)
+    try:
+        contacts = paginator.page(page)
+    except:
+        contacts = paginator.page(1)
+
 
 
 

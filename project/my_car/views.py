@@ -9,24 +9,23 @@ from .filter import getDataByFilter
 from .form import ModelForm
 
 
-def myCarView(request):
+def list(request):
 
     context=getDataByFilter(request.GET)
     context.update( {'request':request})
     return render(request, 'index.html', context)
 
 
-def edit(request):
-    id=request.GET.get('id',False)
+def edit(request,pk=False):
 
 
-    if id and request.method!='POST':
-        model=Model.objects.get(pk=id)
+    if pk and request.method!='POST':
+        model=Model.objects.get(pk=pk)
         modelForm=ModelForm(instance=model)
 
     elif request.method=='POST':
-        if id:
-            model=Model.objects.get(pk=id)
+        if pk:
+            model=Model.objects.get(pk=pk)
             modelForm = ModelForm(request.POST, instance=model)
         else:
             modelForm=ModelForm(request.POST,request.FILES)
@@ -41,6 +40,6 @@ def edit(request):
     return render(request,'edit.html',locals())
 
 
-def delete(request):
-    Model.objects.get(pk=request.GET.get('id')).delete()
+def delete(request,pk=False):
+    Model.objects.get(pk=pk).delete()
     return redirect('/car/index/')

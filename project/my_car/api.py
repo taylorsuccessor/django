@@ -14,7 +14,7 @@ from .filter import Filter
 
 
 
-class CarViewSet(viewsets.ModelViewSet):
+class ViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """

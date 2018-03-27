@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.core.validators import MinValueValidator
-from django.contrib.auth.models import User
+from user.models import MyUser as User
 from django.utils.translation import ugettext_lazy as _
 
 # Create your models here.
@@ -56,9 +56,9 @@ class MyCar(models.Model):
 
 
 def admin_menu():
-    return {'label': 'Car', 'url': '/admin/my_car', 'name': 'MyCar','icon':'fa fa-car',
+    return {'label': 'Car', 'url': '/admin/my_car/mycar', 'name': 'MyCar','icon':'fa fa-car',
             'sub':{
-                'MyCar':{'name':'My Car','admin_url':'/admin/my_car','add_url':'/admin/my_car/mycar/add/'},
+                'MyCar':{'name':'My Car','admin_url':'/admin/my_car/mycar','add_url':'/admin/my_car/mycar/add/'},
                 'Shop':{'name':'Shop','admin_url':'/admin/my_car/shop','add_url':'/admin/my_car/shop/add/'},
 
                  }

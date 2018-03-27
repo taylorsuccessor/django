@@ -37,7 +37,7 @@
 
 
 
-            <a href="#" class="addlink">
+            <a href="/car/edit/" class="addlink">
                 <button id="demo-btn-addrow" class=" btn-outline btn-primary btn-sm"><i class="icon wb-plus" aria-hidden="true"></i>
 
 
@@ -77,7 +77,7 @@
     <tbody>
     {% for result in results %}
     <tr class=" row1">
-        <td><a href="{{result.id}}">{{result.name}}</a></td>
+        <td><a href="/car/edit/{{result.id}}">{{result.name}}</a></td>
         <td>{{result.status_text}}</td>
 
     </tr>
