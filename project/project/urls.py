@@ -19,7 +19,11 @@ from django.contrib import admin
 
 
 
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'car/', include('my_car.urls')),
+    url(r'auth/', include('authentication.urls')),
+
+
 ]

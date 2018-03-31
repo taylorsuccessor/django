@@ -43,3 +43,4 @@ def edit(request,pk=False):
 def delete(request,pk=False):
     Model.objects.get(pk=pk).delete()
     return redirect('/car/index/')
+

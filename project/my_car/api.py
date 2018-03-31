@@ -13,7 +13,9 @@ from .filter import StandardPagination
 from .filter import Filter
 
 
-
+# from rest_framework.decorators import  permission_classes
+# from authorization.authorization import AllowAny
+# @permission_classes((AllowAny,))
 class ViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
@@ -33,7 +35,6 @@ class ViewSet(viewsets.ModelViewSet):
 
 
         return query_set
-
 
     def list(self, request, *args, **kwargs):
         queryset =  self.get_queryset()
