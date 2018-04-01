@@ -54,7 +54,7 @@
 
 
 
-      <div class="form-group  has-error  col-xs-6">
+      <div class="form-group  {% if field.errors %}  has-error {% endif %}  col-xs-6">
 
            <div class="col-sm-4">
                         {{ field.label_tag }}

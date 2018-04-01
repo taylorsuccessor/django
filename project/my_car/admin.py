@@ -205,7 +205,6 @@ class MyCarAdmin(admin.ModelAdmin):
 
         # import pdb;pdb.set_trace()
 
-
         request.GET._mutable = True
 
         if request.GET.get('per_page',False) :
@@ -234,6 +233,7 @@ class MyCarAdmin(admin.ModelAdmin):
     #         .changelist_view(self, request, object_id, form_url, extra_context)
 
     def add_view(self, request, form_url='', extra_context=None):
+
         extra_context = extra_context or {}
         extra_context['customFieldsetList'] = renderCustomFieldsetList(request,object,self.form)
         return super(MyCarAdmin, self).add_view(request, form_url,

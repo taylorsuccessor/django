@@ -47,3 +47,18 @@ class ViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(queryset, many=True)
 
         return Response(serializer.data )
+
+
+    def create(self, request):
+        # request.POST['owner']=request.user.id
+        return super(ViewSet,self).create(request)
+
+
+    def update(self, request, pk=None):
+        return super(ViewSet,self).update(request,pk)
+
+    def partial_update(self, request, pk=None):
+        return super(ViewSet,self).partial_update(request,pk)
+
+    def destroy(self, request, pk=None):
+        return super(ViewSet,self).destroy(request,pk)

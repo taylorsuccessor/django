@@ -1,0 +1,78 @@
+{% load i18n static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
+    <title>{% block title %}{% endblock %}- Python</title>
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static "admin/assets/admin/bootstrap/dist/css/bootstrap.min.css" %}" />
+            <!-- animation CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static "admin/assets/admin/css/animate.css" %}" />
+            <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static "admin/assets/admin/css/style.css" %}" />
+            <!-- color CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static "admin/assets/admin/css/colors/blue.css" %}" />
+
+
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="page-signin">
+<!-- Preloader -->
+<div class="preloader">
+    <div class="cssload-speeding-wheel"></div>
+</div>
+<section id="wrprojecter" class="login-register" style="background-image:url({% static "admin/assets/admin/images/banner1.jpg" %}) !important;width:100%;">
+
+
+                        {% block content %}
+                        {{ content }}
+                        {% endblock %}
+
+</section>
+
+
+
+{% block script %}
+<!-- jQuery -->
+<script src="{% static 'admin/assets/admin/plugins/bower_components/jquery/dist/jquery.min.js' %}" ></script>
+<script src="{% static 'admin/assets/admin/bootstrap/dist/js/bootstrap.min.js' %}" ></script>
+<script src="{% static 'admin/assets/admin/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js' %}" ></script>
+<script src="{% static 'admin/assets/admin/js/jquery.slimscroll.js' %}" ></script>
+<script src="{% static 'admin/assets/admin/js/waves.js' %}" ></script>
+<script src="{% static 'admin/assets/admin/js/custom.min.js' %}" ></script>
+<script src="{% static 'admin/assets/admin/plugins/bower_components/styleswitcher/jQuery.style.switcher.js' %}" ></script>
+{% endblock %}
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -44,6 +44,7 @@ def login(request, template_name='registration/login.html',
         'The login() view is superseded by the class-based LoginView().',
         RemovedInDjango21Warning, stacklevel=2
     )
+
     return LoginView.as_view(
         template_name=template_name,
         redirect_field_name=redirect_field_name,

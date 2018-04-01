@@ -1,3 +1,5 @@
+{% load i18n static %}
+
 {% for name, value in widget.attrs.items %}
 
 
@@ -20,4 +22,8 @@
 
 {% if not 'class'  in widget.attrs.items %}
 class="  form-control"
+{% endif %}
+
+{% if not 'placeholder'  in widget.attrs.items %}
+placeholder="{% trans widget.name %}"
 {% endif %}

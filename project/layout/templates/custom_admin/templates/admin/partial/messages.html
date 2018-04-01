@@ -1,0 +1,47 @@
+
+{% if messages %}
+<div class="clearfix">
+    {% for message in messages %}
+
+
+{% if message.tags == "success" %}
+
+    <div class="alert alert-success">
+        {{message}}
+    </div>
+{% endif %}
+
+{% if message.tags == "error" %}
+        <div class="alert alert-danger alert-dark">
+            <button data-dismiss="alert" class="close" type="button">×</button>
+        {{message}}
+        </div>
+
+{% endif %}
+
+{% if message.tags == "warning" %}
+    <div class="alert alert-warning">
+
+        {{message}}
+    </div>
+{% endif %}
+
+{% if message.tags == "info" %}
+    <div class="alert alert-info">
+
+        {{message}}
+    </div>
+{% endif %}
+
+
+{% if message.tags == "debug" %}
+    <div class="alert alert-info">
+
+        {{message}}
+    </div>
+{% endif %}
+{% endfor %}
+    </div>
+{% endif %}
+
+

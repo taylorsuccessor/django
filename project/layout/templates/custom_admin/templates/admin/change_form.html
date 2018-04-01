@@ -50,6 +50,12 @@
     {{ adminform.form.non_field_errors }}
 {% endif %}
 
+
+
+
+{% include 'admin/partial/messages.html' %}
+
+
 {% block field_sets %}
 {% for fieldset in adminform %}
   {% include "admin/includes/fieldset.html" %}
