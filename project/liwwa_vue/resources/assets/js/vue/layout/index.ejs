@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--lang="ar" dir="rtl"-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#5d67c8" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, shrink-to-fit=no, user-scalable=no" />
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="16x16" href="<%= process.env.MIX_ASSETS_URL %>/favicon.png' | assetImage">
+    <meta name="_token" content="" />
+    <meta name="csrf-token" content="">
+    <title><%= process.env.MIX_APP_NAME %></title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900|Roboto:300,400,500,700,900" rel="stylesheet">
+
+
+
+    <!--<link rel="stylesheet" href="<%= process.env.MIX_ASSETS_URL %><%=process.env.MIX_VERSION %>/css/template.css">-->
+    <link rel="stylesheet" href="<%= process.env.MIX_ASSETS_URL %><%=process.env.MIX_VERSION %>/css/app.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+</head>
+<body class="sign-in-role-page rtlTemplate" id="sign-in-page" >
+
+
+
+<div class="myClass" id="mainAppContainer">
+
+<app-header></app-header>
+<router-view></router-view>
+</div>
+
+
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+
+<script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLkoPoZU4wmIOavt0y7yEj8n2k2mBalRI">
+</script>
+
+
+
+<!--<script src="<%= process.env.MIX_ASSETS_URL %><%= process.env.MIX_VERSION %>/js/node_channel/node_channel_client.js"></script>-->
+
+<script src="<%= process.env.MIX_ASSETS_URL %><%= process.env.MIX_VERSION %>/js/vue_translation/translation.js"></script>
+
+
+<script>
+    function notification(vieReference,data){
+
+        if (typeof data === 'string'){
+            data={
+                'title':'',
+                'text':data,
+                'link':'#',
+            };
+        }
+
+        vieReference.$notify({
+            group: 'main_notification',
+            title: data.title,
+            duration:6000,
+            text: data.text,
+            link:data.link,
+        });
+    }
+</script>
+
+
+
+<script>
+    function updateMeta($token) {
+        // Just replacing the value of the 'content' attribute will not work.
+        $('meta[name=csrf-token]').remove();
+        $('head').append( '<meta name="csrf-token" content="'+$token+'">' );
+    }
+</script>
+
+<!--<script src="<%= process.env.MIX_ASSETS_URL %><%=process.env.MIX_VERSION %>/js/manifest.js"></script>-->
+<!--<script src="<%= process.env.MIX_ASSETS_URL %><%=process.env.MIX_VERSION %>/js/vendor.js"></script>-->
+<script src="<%= process.env.MIX_ASSETS_URL %><%=process.env.MIX_VERSION %>/js/app.js"></script>
+<!--<script src="<%= process.env.MIX_ASSETS_URL %><%=process.env.MIX_VERSION %>/js/lookups.js"></script>-->
+
+<script>
+
+    jQuery.fn.load = function(callback){ $(window).on("load", callback) };
+
+    $(document).ready(function(){
+        $('.preloader').hide();
+    });
+</script>
+
+
+
+
+
+
+
+
+<!--<script>-->
+    <!--jQuery(document).ready(function($){-->
+        <!--$('#celerart-navigation').on('click','#celerart-navigation_nav-icon2', function(e){-->
+            <!--e.preventDefault();-->
+            <!--$('#celerart-navigation_nav-icon2').toggleClass('open');-->
+            <!--$('#celerart-navigation').toggleClass('open');-->
+        <!--})-->
+    <!--});-->
+<!--</script>-->
+<!--<script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>-->
+
+<!--<script src=" process.env.MIX_ASSETS_URL js/template.js"></script>-->
+
+
+
+
+
+
+<style>
+    html, body {
+        min-height: 100%;
+    }
+    body, div, form, input, select, textarea, label {
+        padding: 0;
+        margin: 0;
+        outline: none;
+        font-family: Roboto, Arial, sans-serif;
+        font-size: 14px;
+        color: #666;
+        line-height: 22px;
+    }
+    h1 {
+        position: absolute;
+        margin: 0;
+        font-size: 40px;
+        color: #fff;
+        z-index: 2;
+        line-height: 83px;
+    }
+    .testbox {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: inherit;
+        padding: 20px;
+    }
+    form {
+        width: 100%;
+        padding: 20px;
+        border-radius: 6px;
+        background: #fff;
+        box-shadow: 0 0 8px  #cc7a00;
+    }
+    .banner {
+        position: relative;
+        height: 300px;
+        background-image: url("/uploads/media/default/0001/02/234656e7acbca4625305dd37e7344af8eff32383.jpeg");
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    .banner::after {
+        content: "";
+        background-color: rgba(0, 0, 0, 0.2);
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+    input, select, textarea {
+        margin-bottom: 10px;
+        border: 1px solid #ccc !important;
+        border-radius: 3px;
+    }
+    input {
+        width: calc(100% - 10px);
+        padding: 5px;
+    }
+    input[type="date"] {
+        padding: 4px 5px;
+    }
+    textarea {
+        width: calc(100% - 12px);
+        padding: 5px;
+    }
+    .item:hover p, .item:hover i, .question:hover p, .question label:hover, input:hover::placeholder {
+        color: #cc7a00;
+    }
+    .item input:hover, .item select:hover, .item textarea:hover {
+        border: 1px solid transparent;
+        box-shadow: 0 0 3px 0 #cc7a00;
+        color: #cc7a00;
+    }
+    .item {
+        position: relative;
+        margin: 10px 0;
+    }
+    .item span {
+        color: red;
+    }
+    input[type="date"]::-webkit-inner-spin-button {
+        display: none;
+    }
+    .item i, input[type="date"]::-webkit-calendar-picker-indicator {
+        position: absolute;
+        font-size: 20px;
+        color: #cc7a00;
+    }
+    .item i {
+        right: 1%;
+        top: 30px;
+        z-index: 1;
+    }
+    [type="date"]::-webkit-calendar-picker-indicator {
+        right: 1%;
+        z-index: 2;
+        opacity: 0;
+        cursor: pointer;
+    }
+    input[type=radio], input[type=checkbox]  {
+        display: none;
+    }
+    label.radio {
+        position: relative;
+        display: inline-block;
+        margin: 5px 20px 15px 0;
+        cursor: pointer;
+    }
+    .question span {
+        margin-left: 30px;
+    }
+    .question-answer label {
+        display: block;
+    }
+    label.radio:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 17px;
+        height: 17px;
+        border-radius: 50%;
+        border: 2px solid #ccc;
+    }
+    input[type=radio]:checked + label:before, label.radio:hover:before {
+        border: 2px solid #cc7a00;
+    }
+    label.radio:after {
+        content: "";
+        position: absolute;
+        top: 6px;
+        left: 5px;
+        width: 8px;
+        height: 4px;
+        border: 3px solid #cc7a00;
+        border-top: none;
+        border-right: none;
+        transform: rotate(-45deg);
+        opacity: 0;
+    }
+    input[type=radio]:checked + label:after {
+        opacity: 1;
+    }
+    .btn-block {
+        margin-top: 10px;
+        text-align: center;
+    }
+    button {
+        width: 150px;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background: #cc7a00;
+        font-size: 16px;
+        color: #fff;
+        cursor: pointer;
+    }
+    button:hover {
+        background: #ff9800;
+    }
+    @media (min-width: 568px) {
+        .name-item, .city-item {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .name-item input, .name-item div {
+            width: calc(50% - 20px);
+        }
+        .name-item div input {
+            width:97%;}
+        .name-item div label {
+            display:block;
+            padding-bottom:5px;
+        }
+    }
+</style>
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
